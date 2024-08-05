@@ -1,6 +1,43 @@
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import axios from "axios";
+import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
+
+interface LoginData {
+  username: string;
+  password: string;
+}
+
 function Login() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  let {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginData>();
+
+  const onSubmit = async (data: LoginData) => {
+    try {
+      const response = await axios.post(
+        "https://dummyjson.com/auth/login",
+        data
+      );
+      if (response.status === 200) {
+        navigate("/dashboard");
+      } else {
+        console.log("Unexpected response:", response);
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      if (err.response && err.response.data) {
+        setError((err.response.data as { message: string }).message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
   };
 
   return (
@@ -24,38 +61,56 @@ function Login() {
           </p>
         </div>
         <form
-          className="flex flex-col justify-start mt-6"
-          onSubmit={handleSubmit}
+          className="flex flex-col justify-start mt-6 gap-5"
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <label
-            className="text-[#6C6C6C] font-medium text-sm "
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            className="border border-[#E5E5E5] outline-none placeholder:text-sm py-2 px-4 rounded-sm
-            text-base mt-2 mb-4"
-            type="text"
-            placeholder="Enter your email"
-            id="email"
-          />
-          <label
-            className="text-[#6C6C6C] font-medium text-sm "
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            className="border border-[#E5E5E5] outline-none placeholder:text-sm py-2 px-4 rounded-sm
-            text-base mt-2 mb-4"
-            type="password"
-            placeholder="Enter your password"
-            id="password"
-          />
+          <div className="flex flex-col">
+            <label
+              className="text-[#6C6C6C] font-medium text-sm "
+              htmlFor="email"
+            >
+              Username
+            </label>
+            <input
+              className="border border-[#E5E5E5] outline-none placeholder:text-sm py-2 px-4 rounded-sm
+            text-base mt-2"
+              type="text"
+              placeholder="Enter your username"
+              id="email"
+              {...register("username", { required: "username is required" })}
+            />
+
+            {typeof errors?.username?.message === "string" && (
+              <span className="text-sm text-red-500 mt-1">
+                {errors.username.message}
+              </span>
+            )}
+          </div>
+          <div className="flex flex-col">
+            <label
+              className="text-[#6C6C6C] font-medium text-sm "
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="border border-[#E5E5E5] outline-none placeholder:text-sm py-2 px-4 rounded-sm
+            text-base mt-2"
+              type="password"
+              placeholder="Enter your password"
+              id="password"
+              {...register("password", { required: "password is required" })}
+            />
+            {typeof errors?.password?.message === "string" && (
+              <span className="text-sm text-red-500 mt-1">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+          {<span className="text-red-600">{error}</span>}
           <button
             className="block uppercase text-sm bg-[#FEAF00] py-3 text-white rounded-[5px] 
-            mt-4 hover:opacity-85 transition"
+             hover:opacity-85 transition"
             type="submit"
           >
             Sign In
