@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout.js";
 import MasterLayout from "./layouts/MasterLayout/MasterLayout.js";
 import Login from "./pages/Login/Login.js";
@@ -7,6 +8,7 @@ import UsersList from "./pages/UsersList/UsersList.js";
 import UserData from "./pages/UserData/UserData.js";
 import Profile from "./pages/Profile/Profile.js";
 import NotFound from "./pages/NotFound/NotFound.js";
+import "react-toastify/dist/ReactToastify.css";
 
 const routes = createBrowserRouter([
   {
@@ -26,13 +28,18 @@ const routes = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "home", element: <Home /> },
       { path: "users", element: <UsersList /> },
-      { path: "userData", element: <UserData /> },
+      { path: "userdata", element: <UserData /> },
       { path: "profile", element: <Profile /> },
     ],
   },
 ]);
 function App() {
-  return <RouterProvider router={routes} />;
+  return (
+    <>
+      <RouterProvider router={routes} />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;

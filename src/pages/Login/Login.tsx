@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface LoginData {
   username: string;
@@ -27,6 +28,7 @@ function Login() {
       );
       if (response.status === 200) {
         navigate("/dashboard");
+        toast.success("login success");
       } else {
         console.log("Unexpected response:", response);
       }
@@ -41,7 +43,7 @@ function Login() {
   };
 
   return (
-    <div className="login-page h-screen flex items-center justify-center px-2">
+    <div className="login-page min-h-screen flex items-center justify-center px-2">
       <div
         className="login-container bg-white rounded-2xl pl-8 pr-8 pt-10 pb-[86px] shadow-lg
           max-[560px]:pr-4 max-[560px]:pl-4"
@@ -66,7 +68,7 @@ function Login() {
         >
           <div className="flex flex-col">
             <label
-              className="text-[#6C6C6C] font-medium text-sm "
+              className="text-[#6C6C6C] font-medium text-sm"
               htmlFor="email"
             >
               Username
