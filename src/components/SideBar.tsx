@@ -16,7 +16,7 @@ function SideBar() {
   };
 
   return (
-    <div className="bg-[#F2EAE1] sidebar-container h-screen relative flex">
+    <div className="bg-[#F2EAE1] sidebar-container h-screen">
       <Sidebar collapsed={isCollapsed} className="bg-[#F2EAE1] ">
         <div
           className={`title flex items-center ${
@@ -69,11 +69,11 @@ function SideBar() {
             {isCollapsed ? "" : "Profile"}
           </MenuItem>
         </Menu>
-        <div className="logout flex flex-row items-center justify-center absolute bottom-6 gap-4 w-full ">
-          <button className="text-sm font-medium">Logout</button>
-          {!isCollapsed && <MdExitToApp className="text-[17]" />}
-        </div>
       </Sidebar>
+      <div className="logout flex flex-row items-center justify-center absolute bottom-6 gap-4 w-full ">
+        <button className="text-sm font-medium">Logout</button>
+        <MdExitToApp className="text-[17]" />
+      </div>
     </div>
   );
 }
