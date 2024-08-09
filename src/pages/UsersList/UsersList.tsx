@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchAllUsers } from "../../api/fetchAllUsers";
 import { MdEdit } from "react-icons/md";
 import { LuTrash } from "react-icons/lu";
@@ -7,6 +8,7 @@ import { deleteUser } from "../../api/deleteUser";
 import { User } from "../../intefaces/user";
 
 function UsersList() {
+  const navigate = useNavigate();
   const [allUsers, setAllUsers] = useState([]);
   const [userId, setUserId] = useState(0);
   const [userData, setUserData] = useState<User | null>(null);
@@ -46,10 +48,16 @@ function UsersList() {
         handleConfirm={handleConfirm}
         userData={userData}
       />
-      <div className="user-list-page px-6 bg-[#f0f0f0] ">
-        <header className="user-list-page-header flex flex-row py-3 items-center justify-between border-b-[1px] border-[#E5E5E5]">
+      <div className="user-list-page px-6 bg-[#fcfbfb] ">
+        <header
+          className="user-list-page-header flex flex-row py-3 items-center justify-between border-b-[1px] 
+         border-[#E5E5E5]"
+        >
           <h2 className="text-xl font-bold">Users List</h2>
-          <button className="bg-[#FEAF00] px-10 py-3 text-sm text-white rounded-[5px]">
+          <button
+            onClick={() => navigate("/dashboard/userdata")}
+            className="bg-[#FEAF00] px-10 py-3 text-sm text-white rounded-[5px]"
+          >
             ADD NEW User
           </button>
         </header>
@@ -89,7 +97,7 @@ function UsersList() {
                   scope="col"
                   className="py-3  text-xs leading-4 font-semibold text-[#ACACAC] tracking-wider text-left"
                 >
-                  role
+                  Age
                 </th>
               </tr>
             </thead>
@@ -116,11 +124,17 @@ function UsersList() {
                     {user.birthDate}
                   </td>
                   <td className="py-4 text-sm leading-5 text-black">
-                    {user.role}
+                    {user.age}
                   </td>
                   <td className="py-4 rounded-r-lg">
-                    <div className="flex flex-row items-center gap-4">
-                      <button>
+                    <div className="flex flex-row items-center gap-4 ml-8">
+                      <button
+                        onClick={() =>
+                          navigate("/dashboard/userdata", {
+                            state: { user, isEdit: true },
+                          })
+                        }
+                      >
                         <MdEdit className="text-[#FEAF00] w-[20px] h-[20px]" />
                       </button>
                       <button onClick={() => handleOpenModal(user)}>

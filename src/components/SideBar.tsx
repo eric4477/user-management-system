@@ -59,7 +59,7 @@ function SideBar() {
             icon={<FaGraduationCap className="text-[25px]" />}
             component={<Link to="/dashboard/userdata" />}
           >
-            {isCollapsed ? "" : "User Data"}
+            {isCollapsed ? "" : "Add User"}
           </MenuItem>
           <MenuItem
             className={`${isCollapsed ? "flex flex-row justify-center" : ""}`}
