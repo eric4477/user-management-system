@@ -1,19 +1,16 @@
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../context/StoreContext";
 import { AiOutlineHome } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import porfileImg from "../assets/images/profile.jpg";
 import { MdExitToApp } from "react-icons/md";
-import { useState } from "react";
 
 function SideBar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+  const { isCollapsed } = useContext(StoreContext);
 
   return (
     <div className="bg-[#F2EAE1] sidebar-container h-screen">
@@ -70,9 +67,13 @@ function SideBar() {
           </MenuItem>
         </Menu>
       </Sidebar>
-      <div className="logout flex flex-row items-center justify-center absolute bottom-6 gap-4 w-full ">
-        <button className="text-sm font-medium">Logout</button>
-        <MdExitToApp className="text-[17]" />
+      <div className="logout absolute bottom-6 gap-4 w-full flex items-center justify-center ">
+        <button className="text-sm font-medium flex items-center justify-center gap-3">
+          {!isCollapsed ? "Logout" : ""}{" "}
+          <MdExitToApp
+            className={`${isCollapsed ? "text-[22px]" : ""} text-[17px]`}
+          />
+        </button>
       </div>
     </div>
   );

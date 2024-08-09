@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import StoreContextProvider from "./context/StoreContext.js";
 import { ToastContainer } from "react-toastify";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout.js";
 import MasterLayout from "./layouts/MasterLayout/MasterLayout.js";
@@ -35,10 +36,12 @@ const routes = createBrowserRouter([
 ]);
 function App() {
   return (
-    <>
-      <RouterProvider router={routes} />
-      <ToastContainer />
-    </>
+    <StoreContextProvider>
+      <>
+        <RouterProvider router={routes} />
+        <ToastContainer />
+      </>
+    </StoreContextProvider>
   );
 }
 
