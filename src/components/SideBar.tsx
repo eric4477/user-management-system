@@ -1,4 +1,5 @@
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
@@ -6,11 +7,11 @@ import { AiOutlineHome } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
-import porfileImg from "../assets/images/profile.jpg";
 import { MdExitToApp } from "react-icons/md";
 
 function SideBar() {
-  const { isCollapsed } = useContext(StoreContext);
+  const navigate = useNavigate();
+  const { isCollapsed, logedInUser } = useContext(StoreContext);
 
   return (
     <div className="bg-[#F2EAE1] sidebar-container h-screen">
@@ -28,11 +29,13 @@ function SideBar() {
             <div className="profile-img inline-block mb-4 mt-8">
               <img
                 className="w-[120px] h-[120px] object-cover rounded-full"
-                src={porfileImg}
-                alt="profile"
+                src={logedInUser?.image}
+                alt="profile image"
               />
             </div>
-            <h3 className="text-[17px] mb-1">Karthi Madesh</h3>
+            <h3 className="text-[17px] mb-1">
+              {logedInUser?.firstName} {logedInUser?.lastName}
+            </h3>
             <p className="text-sm text-[#FEAF00] font-medium">Admin</p>
           </div>
         )}
@@ -68,7 +71,10 @@ function SideBar() {
         </Menu>
       </Sidebar>
       <div className="logout absolute bottom-6 gap-4 w-full flex items-center justify-center ">
-        <button className="text-sm font-medium flex items-center justify-center gap-3">
+        <button
+          onClick={() => navigate("/login")}
+          className="text-sm font-medium flex items-center justify-center gap-3"
+        >
           {!isCollapsed ? "Logout" : ""}{" "}
           <MdExitToApp
             className={`${isCollapsed ? "text-[22px]" : ""} text-[17px]`}

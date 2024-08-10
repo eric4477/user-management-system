@@ -77,10 +77,10 @@ function UserData() {
       >
         <div className="flex flex-row  gap-7 items-center flex-wrap">
           <div className="flex flex-col flex-grow gap-4">
-            <div className="flex flex-col justify-start gap-3">
+            <div className="flex flex-col justify-start ">
               <label
                 htmlFor="firstname"
-                className="text-sm font-medium text-[#6C6C6C]"
+                className="text-sm font-medium text-[#6C6C6C] mb-3"
               >
                 First Name
               </label>
@@ -99,10 +99,10 @@ function UserData() {
                   errors.firstName.message}
               </span>
             </div>
-            <div className="flex flex-col justify-start gap-3">
+            <div className="flex flex-col justify-start ">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-[#6C6C6C]"
+                className="text-sm font-medium text-[#6C6C6C] mb-3"
               >
                 Email
               </label>
@@ -125,10 +125,10 @@ function UserData() {
                   errors.email.message}
               </span>
             </div>
-            <div className="flex flex-col justify-start gap-3">
+            <div className="flex flex-col justify-start ">
               <label
                 htmlFor="phonenumber"
-                className="text-sm font-medium text-[#6C6C6C]"
+                className="text-sm font-medium text-[#6C6C6C] mb-3"
               >
                 Phone Number
               </label>
@@ -153,10 +153,10 @@ function UserData() {
             </div>
           </div>
           <div className="flex flex-col flex-grow gap-4">
-            <div className="flex flex-col justify-start gap-3">
+            <div className="flex flex-col justify-start">
               <label
                 htmlFor="lastname"
-                className="text-sm font-medium text-[#6C6C6C]"
+                className="text-sm font-medium text-[#6C6C6C] mb-3"
               >
                 Last Name
               </label>
@@ -175,10 +175,10 @@ function UserData() {
                   errors.lastName.message}
               </span>
             </div>
-            <div className="flex flex-col justify-start gap-3">
+            <div className="flex flex-col justify-start">
               <label
                 htmlFor="age"
-                className="text-sm font-medium text-[#6C6C6C]"
+                className="text-sm font-medium text-[#6C6C6C] mb-3"
               >
                 Age
               </label>
@@ -197,10 +197,10 @@ function UserData() {
                 {typeof errors?.age?.message === "string" && errors.age.message}
               </span>
             </div>
-            <div className="flex flex-col justify-start gap-3">
+            <div className="flex flex-col justify-start">
               <label
                 htmlFor="birthdate"
-                className="text-sm font-medium text-[#6C6C6C]"
+                className="text-sm font-medium text-[#6C6C6C] mb-3"
               >
                 birth Date
               </label>

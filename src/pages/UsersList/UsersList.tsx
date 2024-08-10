@@ -56,7 +56,7 @@ function UsersList() {
           <h2 className="text-xl font-bold">Users List</h2>
           <button
             onClick={() => navigate("/dashboard/userdata")}
-            className="bg-[#FEAF00] px-10 py-3 text-sm text-white rounded-[5px]"
+            className="bg-[#FEAF00] px-10 py-3 text-sm text-white rounded-[5px] transition hover:opacity-60"
           >
             ADD NEW User
           </button>

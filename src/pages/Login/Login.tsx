@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { StoreContext } from "../../context/StoreContext";
 import { toast } from "react-toastify";
 
 interface LoginData {
@@ -11,6 +13,7 @@ interface LoginData {
 }
 
 function Login() {
+  const { saveUserData } = useContext(StoreContext);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -26,6 +29,8 @@ function Login() {
         "https://dummyjson.com/auth/login",
         data
       );
+      localStorage.setItem("userToken", response.data.token);
+      saveUserData();
       if (response.status === 200) {
         navigate("/dashboard");
         toast.success("login success");
@@ -82,11 +87,10 @@ function Login() {
               {...register("username", { required: "username is required" })}
             />
 
-            {typeof errors?.username?.message === "string" && (
-              <span className="text-sm text-red-500 mt-1">
-                {errors.username.message}
-              </span>
-            )}
+            <span className="text-sm text-red-500 mt-1 min-h-[20px]">
+              {typeof errors?.username?.message === "string" &&
+                errors.username.message}
+            </span>
           </div>
           <div className="flex flex-col">
             <label
@@ -103,11 +107,10 @@ function Login() {
               id="password"
               {...register("password", { required: "password is required" })}
             />
-            {typeof errors?.password?.message === "string" && (
-              <span className="text-sm text-red-500 mt-1">
-                {errors.password.message}
-              </span>
-            )}
+            <span className="text-sm text-red-500 mt-1 min-h-[20px]">
+              {typeof errors?.password?.message === "string" &&
+                errors.password.message}
+            </span>
           </div>
           {<span className="text-red-600">{error}</span>}
           <button
