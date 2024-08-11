@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,14 @@ function Login() {
   let {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<LoginData>();
+
+  useEffect(() => {
+    setValue("username", "emilys");
+    setValue("password", "emilyspass");
+  }, []);
 
   const onSubmit = async (data: LoginData) => {
     try {
