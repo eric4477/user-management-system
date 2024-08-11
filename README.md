@@ -1,6 +1,6 @@
 # User Management System
 
-This is a User Management System built with React, utilizing a fake RESTful API from `dummy.json`. This project is designed for managing user data with a clean and responsive UI. You can choose any user from `dummy.json/users` to log in.
+This is a User Management System built with React, utilizing a fake RESTful API from `dummyjson`. This project is designed for managing user data with a clean and responsive UI. You can choose any user from `dummyjson/users` to log in.
 
 ## Table of Contents
 - [Live Site](#live-site)
@@ -8,6 +8,7 @@ This is a User Management System built with React, utilizing a fake RESTful API 
 - [Features](#features)
 - [API](#API)
 - [Usage](#Usage)
+- [Acknowledgements](#acknowledgements)
 
 ## Live Site
 Check out the live version of the project [here](https://user-management-system-4.vercel.app).
@@ -37,7 +38,7 @@ Check out the live version of the project [here](https://user-management-system-
 
 ## API
 
-- **Fake RESTful API**: Uses `dummy.json` to simulate a backend. While there is no actual database, the CRUD operations are functional, though data will not persist after refresh.
+- **Fake RESTful API**: Uses `dummyjson` to simulate a backend. While there is no actual database, the CRUD operations are functional, though data will not persist after refresh.
 
 ## Usage
 
@@ -47,3 +48,6 @@ Upon logging in, you'll have access to the user management system where you can:
 - Add new users.
 - Edit existing user details.
 - Delete users from the system.
+
+## Acknowledgements
+This project was built as a part of learning React and TypeScript, and it leverages various modern libraries and tools to create a functional and responsive user management system.
