@@ -26,7 +26,7 @@ Check out the live version of the project [here](https://user-management-system-
 - **JWT-decode**: A library to decode JSON Web Tokens.
 - **Material UI**: A popular React UI framework for building intuitive user interfaces.
 - **React Toastify**: A library for displaying notifications and toast messages in React applications.
-- - **Fake RESTful API**: Data is simulated using a `dummy.json` file with CRUD operations.
+- **Fake RESTful API**: Using CRUD operations with Axios to interact with data from the DummyJSON RESTful API.
 
 - ## Features
 
