@@ -8,6 +8,7 @@ export const StoreContext = createContext<StoreContextTypes>({
   toggleCollapse: () => {},
   saveUserData: () => {},
   logedInUser: null,
+  setLogedInUser: () => {},
 });
 
 const StoreContextProvider = ({ children }: { children: ReactNode }) => {
@@ -37,6 +38,7 @@ const StoreContextProvider = ({ children }: { children: ReactNode }) => {
     toggleCollapse,
     saveUserData,
     logedInUser,
+    setLogedInUser,
   };
 
   return (

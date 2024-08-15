@@ -11,7 +11,14 @@ import { MdExitToApp } from "react-icons/md";
 
 function SideBar() {
   const navigate = useNavigate();
-  const { isCollapsed, logedInUser } = useContext(StoreContext);
+
+  const handleClick = () => {
+    localStorage.removeItem("userToken");
+    setLogedInUser(null);
+    navigate("/login");
+  };
+
+  const { isCollapsed, logedInUser, setLogedInUser } = useContext(StoreContext);
 
   return (
     <div className="bg-[#F2EAE1] sidebar-container h-screen">
@@ -72,7 +79,7 @@ function SideBar() {
       </Sidebar>
       <div className="logout absolute bottom-6 gap-4 w-full flex items-center justify-center ">
         <button
-          onClick={() => navigate("/login")}
+          onClick={handleClick}
           className="text-sm font-medium flex items-center justify-center gap-3"
         >
           {!isCollapsed ? "Logout" : ""}{" "}

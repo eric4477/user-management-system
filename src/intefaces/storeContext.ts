@@ -5,4 +5,5 @@ export interface StoreContextTypes {
   toggleCollapse: () => void;
   saveUserData: () => void;
   logedInUser: null | User;
+  setLogedInUser: (user: User | null) => void;
 }
