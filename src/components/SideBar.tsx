@@ -1,6 +1,6 @@
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
 import { AiOutlineHome } from "react-icons/ai";
@@ -18,7 +18,16 @@ function SideBar() {
     navigate("/login");
   };
 
+  const handleSetActive = (menuItem: string) => {
+    setActive(menuItem);
+    localStorage.setItem("activeMenu", menuItem);
+  };
+
   const { isCollapsed, logedInUser, setLogedInUser } = useContext(StoreContext);
+
+  const [active, setActive] = useState(
+    localStorage.getItem("activeMenu") || "home"
+  );
 
   return (
     <div className="bg-[#F2EAE1] sidebar-container h-screen">
@@ -48,30 +57,42 @@ function SideBar() {
         )}
         <Menu className="font-[500] flex flex-col items-center mt-10">
           <MenuItem
-            className={`${isCollapsed ? "flex flex-row justify-center" : ""}`}
+            className={`${isCollapsed ? "flex flex-row justify-center" : ""} ${
+              active === "home" ? "bg-[#FEAF00]" : ""
+            }`}
             icon={<AiOutlineHome className="text-[25px]" />}
             component={<Link to="/dashboard/home" />}
+            onClick={() => handleSetActive("home")}
           >
             {isCollapsed ? "" : "Home"}
           </MenuItem>
           <MenuItem
-            className={`${isCollapsed ? "flex flex-row justify-center" : ""}`}
+            className={`${isCollapsed ? "flex flex-row justify-center" : ""} ${
+              active === "users" ? "bg-[#FEAF00]" : ""
+            }`}
             icon={<FaRegBookmark className="text-[20px]" />}
             component={<Link to="/dashboard/users" />}
+            onClick={() => handleSetActive("users")}
           >
             {isCollapsed ? "" : "Users"}
           </MenuItem>
           <MenuItem
-            className={`${isCollapsed ? "flex flex-row justify-center" : ""}`}
+            className={`${isCollapsed ? "flex flex-row justify-center" : ""} ${
+              active === "adduser" ? "bg-[#FEAF00]" : ""
+            }`}
             icon={<FaGraduationCap className="text-[25px]" />}
             component={<Link to="/dashboard/userdata" />}
+            onClick={() => handleSetActive("adduser")}
           >
             {isCollapsed ? "" : "Add User"}
           </MenuItem>
           <MenuItem
-            className={`${isCollapsed ? "flex flex-row justify-center" : ""}`}
+            className={`${isCollapsed ? "flex flex-row justify-center" : ""} ${
+              active === "profile" ? "bg-[#FEAF00]" : ""
+            }`}
             icon={<IoPerson className="text-[25px]" />}
             component={<Link to="/dashboard/profile" />}
+            onClick={() => handleSetActive("profile")}
           >
             {isCollapsed ? "" : "Profile"}
           </MenuItem>

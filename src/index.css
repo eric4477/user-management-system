@@ -28,8 +28,7 @@ body {
 }
 
 .ps-menu-button:hover {
-  background-color: #feaf00 !important;
-  border-radius: 5px;
+  background-color: transparent !important;
 }
 
 .ps-sidebar-container {

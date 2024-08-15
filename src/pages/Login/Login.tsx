@@ -27,6 +27,7 @@ function Login() {
   useEffect(() => {
     setValue("username", "emilys");
     setValue("password", "emilyspass");
+    localStorage.removeItem("activeMenu");
   }, []);
 
   const onSubmit = async (data: LoginData) => {
