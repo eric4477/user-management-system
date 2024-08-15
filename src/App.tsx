@@ -3,6 +3,7 @@ import StoreContextProvider from "./context/StoreContext.js";
 import { ToastContainer } from "react-toastify";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout.js";
 import MasterLayout from "./layouts/MasterLayout/MasterLayout.js";
+import ProtectedRoute from "./components/ProtectedRoute.js";
 import Login from "./pages/Login/Login.js";
 import Home from "./pages/Home/Home.js";
 import UsersList from "./pages/UsersList/UsersList.js";
@@ -26,11 +27,46 @@ const routes = createBrowserRouter([
     element: <MasterLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home /> },
-      { path: "home", element: <Home /> },
-      { path: "users", element: <UsersList /> },
-      { path: "userdata", element: <UserData /> },
-      { path: "profile", element: <Profile /> },
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "home",
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "users",
+        element: (
+          <ProtectedRoute>
+            <UsersList />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "userdata",
+        element: (
+          <ProtectedRoute>
+            <UserData />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);
