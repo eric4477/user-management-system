@@ -14,11 +14,13 @@ export const StoreContext = createContext<StoreContextTypes>({
 const StoreContextProvider = ({ children }: { children: ReactNode }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [logedInUser, setLogedInUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (localStorage.getItem("userToken")) {
       saveUserData();
     }
+    setLoading(false);
   }, []);
 
   const toggleCollapse = () => {
@@ -43,7 +45,13 @@ const StoreContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <StoreContext.Provider value={contextValue}>
-      {children}
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <div className="w-12 h-12 border-4 border-dashed rounded-full animate-spin border-blue-500"></div>
+        </div>
+      ) : (
+        children
+      )}
     </StoreContext.Provider>
   );
 };
