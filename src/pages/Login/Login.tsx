@@ -28,6 +28,7 @@ function Login() {
     setValue("username", "emilys");
     setValue("password", "emilyspass");
     localStorage.removeItem("activeMenu");
+    localStorage.removeItem("userToken");
   }, []);
 
   const onSubmit = async (data: LoginData) => {

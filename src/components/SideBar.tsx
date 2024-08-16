@@ -13,7 +13,6 @@ function SideBar() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    localStorage.removeItem("userToken");
     setLogedInUser(null);
     navigate("/login");
   };
