@@ -37,13 +37,12 @@ function Login() {
         "https://dummyjson.com/auth/login",
         data
       );
-      localStorage.setItem("userToken", response.data.token);
+      localStorage.setItem("userToken", response.data.accessToken);
       saveUserData();
       if (response.status === 200) {
         navigate("/dashboard");
         toast.success("login success");
       } else {
-        console.log("Unexpected response:", response);
       }
     } catch (error) {
       const err = error as AxiosError;
